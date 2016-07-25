@@ -6,6 +6,7 @@ import com.blunderer.materialdesignlibrary.activities.Activity;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarHandler;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarSearchHandler;
 import com.blunderer.materialdesignlibrary.listeners.OnSearchListener;
+import com.blunderer.materialdesignlibrary.sample.App;
 import com.blunderer.materialdesignlibrary.sample.R;
 import com.blunderer.materialdesignlibrary.views.ToolbarSearch;
 
@@ -26,18 +27,23 @@ public class SearchBarAutoCompletionActivity extends Activity {
     }
 
     @Override
+    protected boolean enableActionBarShadow() {
+        return true;
+    }
+
+    @Override
     protected ActionBarHandler getActionBarHandler() {
         return new ActionBarSearchHandler(this, new OnSearchListener() {
 
             @Override
             public void onSearched(String text) {
-                Toast.makeText(getApplicationContext(),
+                Toast.makeText(App.getContext(),
                         "Searching \"" + text + "\"", Toast.LENGTH_SHORT).show();
             }
 
         })
                 .enableAutoCompletion()
-                .setAutoCompletionItems(mItems)
+                .setAutoCompletionSuggestions(mItems)
                 .setAutoCompletionMode(ToolbarSearch.AutoCompletionMode.CONTAINS);
     }
 

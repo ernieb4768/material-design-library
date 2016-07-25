@@ -1,11 +1,10 @@
 package com.blunderer.materialdesignlibrary.activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.blunderer.materialdesignlibrary.R;
 import com.blunderer.materialdesignlibrary.adapters.ViewPagerAdapter;
 import com.blunderer.materialdesignlibrary.handlers.ViewPagerHandler;
@@ -19,7 +18,8 @@ public abstract class ViewPagerWithTabsActivity extends AActivity
         implements com.blunderer.materialdesignlibrary.interfaces.ViewPager {
 
     protected ViewPager mViewPager;
-    protected PagerSlidingTabStrip mViewPagerTabs;
+    //protected PagerSlidingTabStrip mViewPagerTabs;
+    private Toolbar mToolbarActionBar;
     private List<ViewPagerItem> mViewPagerItems;
     private ViewPager.OnPageChangeListener mUserOnPageChangeListener;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -70,7 +70,14 @@ public abstract class ViewPagerWithTabsActivity extends AActivity
             selectPage(defaultViewPagerPageSelectedPosition);
         }
 
-        mViewPagerTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        //mViewPagerTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        mToolbarActionBar = (Toolbar) findViewById(R.id.main_toolbar);
+        if(mToolbarActionBar == null){
+            mToolbarActionBar = new Toolbar(this.getApplication().getApplicationContext());
+        }
+        mToolbarActionBar.setTitle("Sample");
+        setSupportActionBar(mToolbarActionBar);
+
         if (!mViewPagerItems.isEmpty()) showTabs(mViewPager);
     }
 
@@ -88,13 +95,13 @@ public abstract class ViewPagerWithTabsActivity extends AActivity
     }
 
     private void showTabs(ViewPager pager) {
-        mViewPagerTabs.setTextColor(getResources().getColor(android.R.color.white));
-        mViewPagerTabs.setShouldExpand(expandTabs());
-        mViewPagerTabs.setOnPageChangeListener(mUserOnPageChangeListener);
-        mViewPagerTabs.setViewPager(pager);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            mViewPagerTabs.setTabBackground(android.R.attr.selectableItemBackground);
-        }
+        //mViewPagerTabs.setTextColor(getResources().getColor(android.R.color.white));
+        //mViewPagerTabs.setShouldExpand(expandTabs());
+        //mViewPagerTabs.setOnPageChangeListener(mUserOnPageChangeListener);
+        //mViewPagerTabs.setViewPager(pager);
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        //    mViewPagerTabs.setTabBackground(android.R.attr.selectableItemBackground);
+        //}
     }
 
     protected abstract boolean expandTabs();

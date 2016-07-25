@@ -3,7 +3,7 @@ Material Design Library
 
 
 ### Description
-This library helps developers creating their Android Application with Material Design.  
+This library helps developers creating their Android com.blunderer.materialdesignlibrary.sample.App with Material Design.  
 It offers a lot of Material Design classes easy to use like a CardView or a NavigationDrawerActivity that creates an Activity with a Material Design NavigationDrawer.
 
 ### What's new
